@@ -16,7 +16,7 @@ import six
 from collections import namedtuple
 from functools import partial
 from redis.client import Script as RedisScript
-from redis.client import BasePipeline
+from redis.client import Pipeline
 
 from .exceptions import error_handler
 from .regions import (
@@ -415,7 +415,7 @@ class Script(object):
                 client=client,
             )
 
-            if isinstance(client, BasePipeline):
+            if isinstance(client, Pipeline):
                 return partial(
                     self.convert_return_value_from_call,
                     self.return_type,

@@ -4,7 +4,7 @@ from mock import (
 )
 from unittest import TestCase
 
-from redis.client import BasePipeline
+from redis.client import Pipeline
 
 from redis_lua.script import (
     Script,
@@ -853,7 +853,7 @@ class ObjectsScriptTests(TestCase):
             name=name,
             regions=regions,
         )
-        client = MagicMock(spec=BasePipeline)
+        client = MagicMock(spec=Pipeline)
         redis_script.return_value = MagicMock(return_value=42)
         result = script.get_runner(client=client)()
 
